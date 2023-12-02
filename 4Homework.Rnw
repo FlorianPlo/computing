@@ -1,0 +1,150 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{enumerate}
+
+%% for much more math macros
+\usepackage{amsmath}
+
+%% for citation
+%%\usepackage[authoryear,round]{natbib}
+\usepackage[authoryear,sort&compress,longnamesfirst, round]{natbib}
+
+
+
+<<echo=FALSE>>=
+library("knitr")
+
+## set some global knitr options
+## (these settings do not change the default values)
+opts_chunk$set(
+    eval=TRUE,
+    echo=TRUE,
+    results='markup',
+    cache=TRUE
+)
+
+render_latex()
+##render_sweave()
+@
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+
+%% title and name of the group members
+\title{Homework-Unit-4}
+\author{Florian Ploder(12209427) \\
+Kilian Schicho(12116400) \\
+Mira Radakovic(62005377) \\
+Tobias Hundsberger(12042646)}
+
+\maketitle
+
+
+%%-----------------------------------
+
+
+%%first section with the description of normal random number generator based on the Ratio-of-Uniforms method
+\section{Ratio-of-Uniforms Method}
+\label{sec:description}
+
+The so called \emph{Ratio-of-Uniforms (RoU) method} can be used to construct pseudo-
+random number generators for quite a lot of distributions. It has been in in-
+troduced by Kinderman and Monahan [1977]. It is based on the fact that for
+a random variable $X$ with density $f(x)$ we can generate $X$ from the desired
+density by calculating $X = U/V$ for a pair $(U,V)$ uniformly distributed in the
+set 
+\[
+  A_f = \{(u,v):0<v\leq\sqrt{f(u/v)}\} .
+\]
+
+Random points can be sampled uniformly in $A_f$ by rejection from the minimal bounding rectangle, i.e., the smallest possible rectangle that contains $A_f$.
+It is given by $(u^-, u^+) \times (0, v^+)$ where
+
+\[
+  v^+ ~~~ = ~~~ \max_{x} ~ \sqrt{f (x)} , 
+\]
+\[
+  u^- ~~~ = ~~~ \min_{x} ~ x\sqrt{f (x)} , 
+\]
+\[
+  u^+ ~~~ = ~~~ \max_{x} ~ x\sqrt{f (x)} . 
+\]
+
+%% reference to the paper
+\citep{Kinderman;Monahan:1977a}
+
+
+%%-----------------------------
+
+
+%%the mathematical computation of of v+, u−, and u+
+
+
+%%TESTTESTTESTTESETTESTTEST -- trying to get anything work -- NOTHING RELEVANT AND NOTHING WORKS SO WOULDN'T ADVISE TO USE THIS FOR FURTHER WORK
+
+<<comment, comment=NA, echo=F>>=
+x <- seq(-50,50, by=0.001)
+# Define the functions
+#f <- function(x) exp(-x^2 / 2)
+#sqrt_f <- function(x) sqrt(f(x))
+#x_sqrt_f <- function(x) x * sqrt(f(x))
+
+# Derivatives
+#D_sqrt_f <- function(x) -0.5 * x * exp(-x^2 / 4)
+#D_x_sqrt_f <- function(x) (1 - 0.25 * x^2) * exp(-x^2 / 4)
+#D_sqrt_f <- D(sqrt_f(x),"x")
+#print(D_sqrt_f)
+#u <- seq(-10)
+#plot(D_sqrt_f)
+#D_x_sqrt_f <- D(x_sqrt_f(x), "x")
+#D_x_sqrt_f
+#a <- -10
+#b <- 10
+#root <- uniroot(D_sqrt_f, interval = c(a, b), tol = 0.001)
+#print(root$root)
+
+?uniroot
+
+#D_x_sqrt_f <- function(x) D((x_sqrt_f),"x")
+#plot(D_x_sqrt_f)
+#a <- -10
+#b <- 10
+#root1 <- uniroot(D_sqrt_f, interval = c(a, b))
+#print(root1$root)
+
+#rootu <- uniroot(D_sqrt_f, interval = c(a, b))
+#print(rootu$rootu)
+
+# Find roots
+#root_sqrt_f <- 0  # Root for D_sqrt_f
+#root_x_sqrt_f <- c(-2, 2)  # Roots for D_x_sqrt_f
+#u <- -10:10
+#f <- function(x) -0.5 * x * exp(-x^2 / 4)
+#plot(f, u)
+# Finde Nullstellen im Intervall [a, b]
+
+#root <- uniroot(f, interval = c(a, b), tol = 0.0001)
+#f(root$root)
+# Das Ergebnis ist in root$root
+#print(root$root)
+
+
+# Output the roots
+#cat("Root of D_sqrt_f:", root_sqrt_f, "\n")
+#cat("Roots of D_x_sqrt_f:", root_x_sqrt_f, "\n")
+
+
+rm(list=ls())
+
+@
+
+
+
+
+%% 
+\bibliographystyle{plainnat}
+\bibliography{RoU}
+
+
+\end{document}
